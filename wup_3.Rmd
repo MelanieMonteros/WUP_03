@@ -33,16 +33,33 @@ From what the graph shows we are able to see that the box for students sitting i
 ```{r}
 basicCN + geom_boxplot(notch=TRUE,outlier.color = "red") + stat_boxplot(geom ='errorbar') + labs(title="Fancy notch boxplot \n with 2 lines")
 ```
+  
 From what the graph shows we are able to see that the box for students sitting in the back of the class is much bigger then those who seat in the front and middle, leading to the understanding the students who sit in the back are more likely to pick up alcohol.
+  
 ## Numerical Summarys 
 
 ```{r}
 favstats(alcohol~Seat,data=ucdavis1)
 ```
 
-this graph shows the amount of drinks students in different parts of a class drink per week, showing that the students in the back of the class drink much more then both the students in the front ans the middle of the class. with students in the front drinking 1.78... drinks, the students in the middle drinking only 3.33... drink and the students in the back taking the largest number drinks 8.55 drinks per week. 
-
+  this graph shows the amount of drinks students in different parts of a class drink per week, showing that the students in the back of the class drink much more then both the students in the front ans the middle of the class. with students in the front drinking 1.78... drinks, the students in the middle drinking only 3.33... drink and the students in the back taking the largest number drinks 8.55 drinks per week. 
+  
 ## Inferential Tests
+
+```{r}
+model1 <- aov(alcohol~Seat,data=davisdata)
+summary.aov(model1)
+```
+
+this graph shows a significant result, because the numbers are much smaller then 0.05. 
+
+```{r}
+plot(TukeyHSD(model1))
+```
+
+
+This graph shows the the amount of differences each sits drink. Letting the viewer realized that both the student in the front of the class and the students in the middle of the class are drink about the same as each other not one of them over does it, however the students in the back of the class completely take oven the amount drink-ed by both front and middle seats.
+
 
 ## Conclusions
 
